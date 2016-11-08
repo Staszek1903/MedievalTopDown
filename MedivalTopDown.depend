@@ -1,0 +1,69 @@
+# depslib dependency file v1.0
+1477417071 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\main.cpp
+	<allegro5/allegro.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_image.h>
+	<iostream>
+	"screen_manager.h"
+
+1477409702 c:\users\patryk\documents\allegro_reload\medivaltopdown\include\screen_manager.h
+	<allegro5/allegro.h>
+	"screen.h"
+	"game_screen.h"
+
+1477332682 c:\users\patryk\documents\allegro_reload\medivaltopdown\include\screen.h
+	<allegro5/allegro.h>
+
+1477411482 c:\users\patryk\documents\allegro_reload\medivaltopdown\include\game_screen.h
+	<allegro5/allegro.h>
+	<allegro5/allegro_primitives.h>
+	"screen.h"
+	"game_world.h"
+
+1477414576 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\game_screen.cpp
+	"..\include\game_screen.h"
+
+1477332724 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\screen.cpp
+	"screen.h"
+
+1477413504 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\screen_manager.cpp
+	"screen_manager.h"
+
+1477514659 c:\users\patryk\documents\allegro_reload\medivaltopdown\include\game_world.h
+	<allegro5/allegro.h>
+	<vector>
+	"unit.h"
+	"player.h"
+	"def_ennemy.h"
+
+1477413943 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\game_world.cpp
+	"game_world.h"
+
+1477411609 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\unit.cpp
+	"unit.h"
+
+1477416908 c:\users\patryk\documents\allegro_reload\medivaltopdown\include\unit.h
+	<allegro5/allegro.h>
+	<utility>
+
+1477420353 c:\users\patryk\documents\allegro_reload\medivaltopdown\include\player.h
+	"unit.h"
+	<conio.h>
+	<iostream>
+	<cmath>
+
+1477420353 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\player.cpp
+	"player.h"
+
+1477514473 c:\users\patryk\documents\allegro_reload\medivaltopdown\include\def_ennemy.h
+	"unit.h"
+	"allegro5/allegro.h"
+
+1477501035 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\map.cpp
+	"map.h"
+
+1477502504 c:\users\patryk\documents\allegro_reload\medivaltopdown\include\map.h
+
+1477514659 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\def_ennemy.cpp
+	"def_ennemy.h"
+
