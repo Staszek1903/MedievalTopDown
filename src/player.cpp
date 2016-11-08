@@ -19,6 +19,8 @@ void Player::load_content()
     move_dir = 0;
     is_moving = 0;
 
+    bounding.load_content(position, 32, Bounding_box::SQUARE);
+
 
     sprite = al_load_bitmap("def_unit.png");
 
@@ -83,6 +85,8 @@ void Player::update(ALLEGRO_EVENT ev)
             position.second = position.second + sin(direction+ move_dir);
         }
     }
+
+    bounding.update(position);
 }
 
 void Player::draw(ALLEGRO_DISPLAY * disp)

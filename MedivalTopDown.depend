@@ -36,15 +36,16 @@
 	"player.h"
 	"def_ennemy.h"
 
-1477511070 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\game_world.cpp
+1478629863 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\game_world.cpp
 	"game_world.h"
 
-1477408009 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\unit.cpp
+1478629106 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\unit.cpp
 	"unit.h"
 
-1477413308 c:\users\patryk\documents\allegro_reload\medivaltopdown\include\unit.h
+1478629106 c:\users\patryk\documents\allegro_reload\medivaltopdown\include\unit.h
 	<allegro5/allegro.h>
 	<utility>
+	"bounding_box.h"
 
 1477416753 c:\users\patryk\documents\allegro_reload\medivaltopdown\include\player.h
 	"unit.h"
@@ -52,7 +53,7 @@
 	<iostream>
 	<cmath>
 
-1477416753 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\player.cpp
+1478629467 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\player.cpp
 	"player.h"
 
 1477510873 c:\users\patryk\documents\allegro_reload\medivaltopdown\include\def_ennemy.h
@@ -64,6 +65,13 @@
 
 1477498904 c:\users\patryk\documents\allegro_reload\medivaltopdown\include\map.h
 
-1477511059 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\def_ennemy.cpp
+1478629467 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\def_ennemy.cpp
 	"def_ennemy.h"
+
+1478628610 c:\users\patryk\documents\allegro_reload\medivaltopdown\include\bounding_box.h
+	<utility>
+	<iostream>
+
+1478629737 source:c:\users\patryk\documents\allegro_reload\medivaltopdown\src\bounding_box.cpp
+	"bounding_box.h"
 

@@ -23,6 +23,15 @@ void Game_world::update(ALLEGRO_EVENT ev)
 {
     for(int i=0; i<units.size(); i++)
         units[i]->update(ev);
+
+    for(int i=0; i<units.size(); i++)
+    {
+        for(int j =0; j <units.size(); j++)
+        {
+            if(i == j) continue;
+            std::cout<<units[i]->bounding.is_coliding(units[j]->bounding)<<std::endl;
+        }
+    }
 }
 
 void Game_world::draw(ALLEGRO_DISPLAY *disp)

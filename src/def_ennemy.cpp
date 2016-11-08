@@ -17,11 +17,12 @@ void Def_ennemy::load_content()
     direction = 0;
 
     sprite = al_load_bitmap("enemy_def.png");
+    bounding.load_content(position, 32, Bounding_box::SQUARE);
 }
 
 void Def_ennemy::update(ALLEGRO_EVENT ev)
 {
-
+    bounding.update(position);
 }
 
 void Def_ennemy::draw(ALLEGRO_DISPLAY * disp)
