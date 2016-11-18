@@ -17,7 +17,7 @@ void Def_ennemy::load_content()
     direction = 0;
 
     sprite = al_load_bitmap("enemy_def.png");
-    bounding.load_content(position, 32, Bounding_box::SQUARE);
+    bounding.load_content(position, 32, Bounding_box::BOX);
 }
 
 void Def_ennemy::update(ALLEGRO_EVENT ev)
@@ -27,7 +27,7 @@ void Def_ennemy::update(ALLEGRO_EVENT ev)
 
 void Def_ennemy::draw(ALLEGRO_DISPLAY * disp)
 {
-    al_draw_rotated_bitmap(sprite, 16,16, position.first,position.second, direction, NULL);
+    al_draw_rotated_bitmap(sprite, 16,16, position.first,position.second, direction, 0);
 }
 
 void Def_ennemy::unload_content()

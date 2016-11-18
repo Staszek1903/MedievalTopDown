@@ -14,19 +14,18 @@ protected:
     double direction; // radian angle
 
     ALLEGRO_BITMAP * sprite;
+    Bounding_box bounding;
 
 public:
     Unit();
     virtual ~Unit();
 
-    Bounding_box bounding;
-
     virtual void load_content();
     virtual void update(ALLEGRO_EVENT ev);
     virtual void draw(ALLEGRO_DISPLAY * disp);
     virtual void unload_content();
-    bool is_coliding(Bounding_box *b);
-    Bounding_box* get_bounding();
+    bool is_coliding(Unit *b);
+    Bounding_box& get_bounding();
 
 };
 

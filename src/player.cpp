@@ -19,12 +19,11 @@ void Player::load_content()
     move_dir = 0;
     is_moving = 0;
 
-    bounding.load_content(position, 32, Bounding_box::SQUARE);
+    bounding.load_content(position, 32, Bounding_box::CUSTOM);
 
 
     sprite = al_load_bitmap("def_unit.png");
 
-    cout<<"spierdalaj"<<endl;
 
     if(!sprite){
         cout<<"ni mo bitmapy"<<endl;
@@ -91,7 +90,7 @@ void Player::update(ALLEGRO_EVENT ev)
 
 void Player::draw(ALLEGRO_DISPLAY * disp)
 {
-    al_draw_rotated_bitmap(sprite, 16,16, position.first, position.second, direction, NULL);
+    al_draw_rotated_bitmap(sprite, 16,16, position.first, position.second, direction, 0);
 }
 
 void Player::unload_content()
