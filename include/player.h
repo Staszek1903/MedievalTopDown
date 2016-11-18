@@ -13,7 +13,12 @@ class Player : public Unit
 {
     std::pair <int,int> mouse_pos;
     int is_moving;
-    float move_dir;
+    bool up_dir=0, down_dir=0, right_dir=0, left_dir=0;
+    float dir_x=0, dir_y=0;
+    const double brake = 0.04;
+    const double acc = 0.04; //acceleration
+
+    //float move_dir;
 
 public:
     Player();
