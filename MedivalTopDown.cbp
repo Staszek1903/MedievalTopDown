@@ -37,6 +37,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="include/bounding_box.h" />
 		<Unit filename="include/def_ennemy.h" />
 		<Unit filename="include/game_screen.h" />
 		<Unit filename="include/game_world.h" />
@@ -46,6 +47,7 @@
 		<Unit filename="include/screen_manager.h" />
 		<Unit filename="include/unit.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/bounding_box.cpp" />
 		<Unit filename="src/def_ennemy.cpp" />
 		<Unit filename="src/game_screen.cpp" />
 		<Unit filename="src/game_world.cpp" />

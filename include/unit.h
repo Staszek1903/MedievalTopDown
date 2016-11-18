@@ -4,6 +4,8 @@
 #include <allegro5/allegro.h>
 #include <utility>
 
+#include "bounding_box.h"
+
 class Unit
 {
 protected:
@@ -12,6 +14,7 @@ protected:
     double direction; // radian angle
 
     ALLEGRO_BITMAP * sprite;
+    Bounding_box bounding;
 
 public:
     Unit();
@@ -21,6 +24,8 @@ public:
     virtual void update(ALLEGRO_EVENT ev);
     virtual void draw(ALLEGRO_DISPLAY * disp);
     virtual void unload_content();
+    bool is_coliding(Unit *b);
+    Bounding_box& get_bounding();
 
 };
 
