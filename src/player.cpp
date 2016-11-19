@@ -14,16 +14,17 @@ void Player::load_content()
 {
     position.first = 100;
     position.second = 100;
-    move_speed = 1;
+    move_speed = 5;
     direction = 0;
-    move_dir = 0;
+    //move_dir = 0;
     is_moving = 0;
-
-    bounding.load_content(position, 32, Bounding_box::CUSTOM);
 
 
     sprite = al_load_bitmap("def_unit.png");
 
+    bounding.load_content(position, 32, Bounding_box::CUSTOM);
+
+    cout<<"spierdalaj"<<endl;
 
     if(!sprite){
         cout<<"ni mo bitmapy"<<endl;
@@ -40,24 +41,25 @@ void Player::update(ALLEGRO_EVENT ev)
     }
     else if(ev.type == ALLEGRO_EVENT_KEY_DOWN)
     {
+
         switch(ev.keyboard.keycode)
         {
-        case ALLEGRO_KEY_A:
-            is_moving++;
-            move_dir = M_PI;
-            break;
-        case ALLEGRO_KEY_W:
-            is_moving++;
-            move_dir = -M_PI_2;
-            break;
-        case ALLEGRO_KEY_S:
-            is_moving++;
-            move_dir = M_PI_2;
-            break;
-        case ALLEGRO_KEY_D:
-            is_moving++;
-            move_dir = 0;
-            break;
+            case ALLEGRO_KEY_W:
+                up_dir = 1;
+                //dir_y = -acc;
+                break;
+            case ALLEGRO_KEY_S:
+                down_dir = 1;
+                //dir_y = acc;
+                break;
+            case ALLEGRO_KEY_A:
+                left_dir = 1;
+                //dir_y = -acc;
+                break;
+            case ALLEGRO_KEY_D:
+                right_dir = 1;
+                //dir_y = acc;
+                break;
         }
     }
     else if(ev.type == ALLEGRO_EVENT_KEY_UP)
@@ -65,10 +67,16 @@ void Player::update(ALLEGRO_EVENT ev)
         switch(ev.keyboard.keycode)
         {
         case ALLEGRO_KEY_A:
+            left_dir = 0;
+            break;
         case ALLEGRO_KEY_W:
+            up_dir = 0;
+            break;
         case ALLEGRO_KEY_S:
+            down_dir = 0;
+            break;
         case ALLEGRO_KEY_D:
-            is_moving--;
+            right_dir = 0;
             break;
         }
     }
@@ -78,23 +86,74 @@ void Player::update(ALLEGRO_EVENT ev)
               x = mouse_pos.first -position.first;
         this->direction = atan2(y, x) + M_PI_2;
 
-        if(is_moving>0)
+        if(up_dir)
         {
-            position.first = position.first +cos(direction + move_dir);
-            position.second = position.second + sin(direction+ move_dir);
+            if(dir_y>0) dir_y = 0;
+            dir_y -= acc;
+            if(dir_y<-1) dir_y = -1;
         }
-    }
+        else if(down_dir)
+        {
+            if(dir_y<0) dir_y = 0;
+            dir_y += acc;
+            if(dir_y>1) dir_y = 1;
+        }
 
-    bounding.update(position);
+        if(!down_dir && !up_dir && dir_y != 0)
+        {
+            if(dir_y<0)
+            {
+                dir_y += brake;
+                if(dir_y>0) dir_y=0;
+            }
+            else
+            {
+                dir_y -= brake;
+                if(dir_y<0) dir_y = 0;
+            }
+        }
+
+        if(left_dir)
+        {
+            if(dir_x>0) dir_x = 0;
+            dir_x -= acc;
+            if(dir_x<-1) dir_x = -1;
+        }
+        else if (right_dir)
+        {
+            if(dir_x<0) dir_x = 0;
+            dir_x += acc;
+            if(dir_x>1) dir_x = 1;
+        }
+
+        if(!left_dir && !right_dir && dir_x != 0)
+        {
+            if(dir_x<0)
+            {
+                dir_x += brake;
+                if(dir_x>0) dir_x = 0;
+            }
+            else
+            {
+                dir_x -= brake;
+                if(dir_x<0) dir_x = 0;
+            }
+        }
+
+
+
+
+        position.first += move_speed*dir_x;
+        position.second += move_speed*dir_y;
+    }
 }
 
 void Player::draw(ALLEGRO_DISPLAY * disp)
 {
-    al_draw_rotated_bitmap(sprite, 16,16, position.first, position.second, direction, 0);
+    al_draw_rotated_bitmap(sprite, 16,16, position.first, position.second, direction, NULL);
 }
 
 void Player::unload_content()
 {
 
 }
-
