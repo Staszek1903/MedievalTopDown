@@ -22,13 +22,8 @@ void Event_rec::rec_event_list(std::vector <Event> ev_list)
         switch(ev_list[i].get_type())
         {
         case Event::SOLID:
-<<<<<<< HEAD
             dir_speed->first = 0;
             dir_speed->second = 0;
-=======
-            dir_speed->first = -(dir_speed->first*0.25);
-            dir_speed->second = -(dir_speed->second*0.25);
->>>>>>> f6d7b97bd63074d6870cb0764ddc0267f299e23a
             std::cout<<"SOLID KURWA"<<std::endl;
         break;
         }

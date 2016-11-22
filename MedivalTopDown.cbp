@@ -39,9 +39,6 @@
 		</Compiler>
 		<Unit filename="include/bounding_box.h" />
 		<Unit filename="include/def_ennemy.h" />
-		<Unit filename="include/event.h" />
-		<Unit filename="include/event_rec.h" />
-		<Unit filename="include/event_trans.h" />
 		<Unit filename="include/game_screen.h" />
 		<Unit filename="include/game_world.h" />
 		<Unit filename="include/map.h" />
@@ -52,9 +49,7 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/bounding_box.cpp" />
 		<Unit filename="src/def_ennemy.cpp" />
-		<Unit filename="src/event.cpp" />
 		<Unit filename="src/event_rec.cpp" />
-		<Unit filename="src/event_trans.cpp" />
 		<Unit filename="src/game_screen.cpp" />
 		<Unit filename="src/game_world.cpp" />
 		<Unit filename="src/map.cpp" />
