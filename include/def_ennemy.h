@@ -2,11 +2,13 @@
 #define DEF_ENNEMY_H
 
 #include "unit.h"
-#include "allegro5/allegro.h"
+#include "event_trans.h"
+#include <allegro5/allegro.h>
 
 
 class Def_ennemy : public Unit
 {
+
 public:
     Def_ennemy();
     virtual ~Def_ennemy();

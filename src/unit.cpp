@@ -2,7 +2,7 @@
 
 Unit::Unit()
 {
-    //ctor
+    reciever.set_speed_ref(dir_speed);
 }
 
 Unit::~Unit()
@@ -38,4 +38,15 @@ bool Unit::is_coliding(Unit *b)
 Bounding_box& Unit::get_bounding()
 {
     return bounding;
+}
+
+
+std::vector <Event> Unit::get_event_list()
+{
+    return transmiter.get_list(position);
+}
+
+void Unit::take_event_list(std::vector <Event> event_list)
+{
+    reciever.rec_event_list(event_list);
 }

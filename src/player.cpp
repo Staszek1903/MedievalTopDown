@@ -46,19 +46,19 @@ void Player::update(ALLEGRO_EVENT ev)
         {
             case ALLEGRO_KEY_W:
                 up_dir = 1;
-                //dir_y = -acc;
+                //dir_speed.second = -acc;
                 break;
             case ALLEGRO_KEY_S:
                 down_dir = 1;
-                //dir_y = acc;
+                //dir_speed.second = acc;
                 break;
             case ALLEGRO_KEY_A:
                 left_dir = 1;
-                //dir_y = -acc;
+                //dir_speed.second = -acc;
                 break;
             case ALLEGRO_KEY_D:
                 right_dir = 1;
-                //dir_y = acc;
+                //dir_speed.second = acc;
                 break;
         }
     }
@@ -88,63 +88,65 @@ void Player::update(ALLEGRO_EVENT ev)
 
         if(up_dir)
         {
-            if(dir_y>0) dir_y = 0;
-            dir_y -= acc;
-            if(dir_y<-1) dir_y = -1;
+            if(dir_speed.second>0) dir_speed.second = 0;
+            dir_speed.second -= acc;
+            if(dir_speed.second<-1) dir_speed.second = -1;
         }
         else if(down_dir)
         {
-            if(dir_y<0) dir_y = 0;
-            dir_y += acc;
-            if(dir_y>1) dir_y = 1;
+            if(dir_speed.second<0) dir_speed.second = 0;
+            dir_speed.second += acc;
+            if(dir_speed.second>1) dir_speed.second = 1;
         }
 
-        if(!down_dir && !up_dir && dir_y != 0)
+        if(!down_dir && !up_dir && dir_speed.second != 0)
         {
-            if(dir_y<0)
+            if(dir_speed.second<0)
             {
-                dir_y += brake;
-                if(dir_y>0) dir_y=0;
+                dir_speed.second += brake;
+                if(dir_speed.second>0) dir_speed.second=0;
             }
             else
             {
-                dir_y -= brake;
-                if(dir_y<0) dir_y = 0;
+                dir_speed.second -= brake;
+                if(dir_speed.second<0) dir_speed.second = 0;
             }
         }
 
         if(left_dir)
         {
-            if(dir_x>0) dir_x = 0;
-            dir_x -= acc;
-            if(dir_x<-1) dir_x = -1;
+            if(dir_speed.first>0) dir_speed.first = 0;
+            dir_speed.first -= acc;
+            if(dir_speed.first<-1) dir_speed.first = -1;
         }
         else if (right_dir)
         {
-            if(dir_x<0) dir_x = 0;
-            dir_x += acc;
-            if(dir_x>1) dir_x = 1;
+            if(dir_speed.first<0) dir_speed.first = 0;
+            dir_speed.first += acc;
+            if(dir_speed.first>1) dir_speed.first = 1;
         }
 
-        if(!left_dir && !right_dir && dir_x != 0)
+        if(!left_dir && !right_dir && dir_speed.first != 0)
         {
-            if(dir_x<0)
+            if(dir_speed.first<0)
             {
-                dir_x += brake;
-                if(dir_x>0) dir_x = 0;
+                dir_speed.first += brake;
+                if(dir_speed.first>0) dir_speed.first = 0;
             }
             else
             {
-                dir_x -= brake;
-                if(dir_x<0) dir_x = 0;
+                dir_speed.first -= brake;
+                if(dir_speed.first<0) dir_speed.first = 0;
             }
         }
 
 
 
 
-        position.first += move_speed*dir_x;
-        position.second += move_speed*dir_y;
+        position.first += move_speed*dir_speed.first;
+        position.second += move_speed*dir_speed.second;
+
+        bounding.update(position);
     }
 }
 

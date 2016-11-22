@@ -2,7 +2,7 @@
 
 Def_ennemy::Def_ennemy()
 {
-    //ctor
+    transmiter.add_event(Event::SOLID,0);
 }
 
 Def_ennemy::~Def_ennemy()
