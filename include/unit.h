@@ -5,16 +5,21 @@
 #include <utility>
 
 #include "bounding_box.h"
+#include "event_trans.h"
+#include "event_rec.h"
 
 class Unit
 {
 protected:
     std::pair <float,float> position;
     float move_speed;
+    std::pair <float, float> dir_speed;
     double direction; // radian angle
 
     ALLEGRO_BITMAP * sprite;
     Bounding_box bounding;
+    Event_trans transmiter;
+    Event_rec reciever;
 
 public:
     Unit();
@@ -26,6 +31,8 @@ public:
     virtual void unload_content();
     bool is_coliding(Unit *b);
     Bounding_box& get_bounding();
+    std::vector <Event> get_event_list();
+    void take_event_list(std::vector <Event>);
 
 };
 

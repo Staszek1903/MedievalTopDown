@@ -28,7 +28,11 @@ void Game_world::update(ALLEGRO_EVENT ev)
     {
         for(unsigned int j =i+1; j <units.size(); j++)
         {
-            std::cout<<units[i]->is_coliding(units[j])<<std::endl;
+            if(units[i]->is_coliding(units[j]))
+            {
+                units[i]->take_event_list(units[j]->get_event_list());
+                units[j]->take_event_list(units[i]->get_event_list());
+            }
         }
     }
 }
