@@ -2,7 +2,7 @@
 
 Unit::Unit()
 {
-    reciever.set_speed_ref(dir_speed);
+    reciever.set_pos_ref(position,prev_position);
 }
 
 Unit::~Unit()

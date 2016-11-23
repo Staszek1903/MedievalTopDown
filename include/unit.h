@@ -11,7 +11,7 @@
 class Unit
 {
 protected:
-    std::pair <float,float> position;
+    std::pair <float,float> position, prev_position;
     float move_speed;
     std::pair <float, float> dir_speed;
     double direction; // radian angle

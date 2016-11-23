@@ -82,6 +82,7 @@ void Player::update(ALLEGRO_EVENT ev)
     }
     else if(ev.type == ALLEGRO_EVENT_TIMER)
     {
+        prev_position = position;
         float y = mouse_pos.second - position.second,
               x = mouse_pos.first -position.first;
         this->direction = atan2(y, x) + M_PI_2;

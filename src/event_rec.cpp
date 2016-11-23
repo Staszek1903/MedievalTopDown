@@ -10,9 +10,10 @@ Event_rec::~Event_rec()
     //dtor
 }
 
-void Event_rec::set_speed_ref(std::pair <float, float> &ds)
+void Event_rec::set_pos_ref(std::pair <float, float> &pos, std::pair <float, float> &prev_pos)
 {
-    dir_speed = &ds;
+    prev_position = &prev_pos;
+    position = &pos;
 }
 
 void Event_rec::rec_event_list(std::vector <Event> ev_list)
@@ -22,8 +23,7 @@ void Event_rec::rec_event_list(std::vector <Event> ev_list)
         switch(ev_list[i].get_type())
         {
         case Event::SOLID:
-            dir_speed->first = 0;
-            dir_speed->second = 0;
+            *position = *prev_position;
             std::cout<<"SOLID KURWA"<<std::endl;
         break;
         }
