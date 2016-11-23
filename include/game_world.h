@@ -6,10 +6,12 @@
 #include "unit.h"
 #include "player.h"
 #include "def_ennemy.h"
+#include "map.h"
 
 class Game_world
 {
     std::vector <Unit*> units;
+    Map mapa;
 
 public:
     Game_world();

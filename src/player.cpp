@@ -22,7 +22,7 @@ void Player::load_content()
 
     sprite = al_load_bitmap("def_unit.png");
 
-    bounding.load_content(position, 32, Bounding_box::CUSTOM);
+    bounding.load_content(position, 32, Bounding_box::BOX);
 
     cout<<"spierdalaj"<<endl;
 

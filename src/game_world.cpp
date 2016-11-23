@@ -12,6 +12,8 @@ Game_world::~Game_world()
 
 void Game_world::load_content()
 {
+    mapa.load_content();
+
     units.push_back(new Player);
     units.push_back(new Def_ennemy);
 
@@ -21,6 +23,7 @@ void Game_world::load_content()
 
 void Game_world::update(ALLEGRO_EVENT ev)
 {
+    mapa.update(ev);
     for(unsigned int i=0; i<units.size(); i++)
         units[i]->update(ev);
 
@@ -39,12 +42,14 @@ void Game_world::update(ALLEGRO_EVENT ev)
 
 void Game_world::draw(ALLEGRO_DISPLAY *disp)
 {
+    mapa.draw(disp);
     for(unsigned int i=0; i<units.size(); i++)
         units[i]->draw(disp);
 }
 
 void Game_world::unload_content()
 {
+    //mapa.unload_content();
     for(unsigned int i=0; i<units.size(); i++)
         delete units[i];
 }
