@@ -26,7 +26,7 @@ public:
     Player();
     virtual ~Player();
 
-    void load_content();
+    void load_content(std::pair <int,int> pos);
     void update(ALLEGRO_EVENT ev);
     void draw(ALLEGRO_DISPLAY * disp);
     void unload_content();

@@ -10,14 +10,17 @@ Def_ennemy::~Def_ennemy()
     //dtor
 }
 
-void Def_ennemy::load_content()
+void Def_ennemy::load_content(std::pair <int,int> pos)
 {
-    position.first = 500;
-    position.second = 500;
+    position = pos;
     direction = 0;
 
     sprite = al_load_bitmap("enemy_def.png");
-    bounding.load_content(position, 32, Bounding_box::BOX);
+    bounding.load_content(position, 32, Bounding_box::CUSTOM);
+    bounding.clear_points();
+    bounding.new_point({0,-16});
+    bounding.new_point({16,16});
+    bounding.new_point({-16,16});
 }
 
 void Def_ennemy::update(ALLEGRO_EVENT ev)
@@ -27,7 +30,8 @@ void Def_ennemy::update(ALLEGRO_EVENT ev)
 
 void Def_ennemy::draw(ALLEGRO_DISPLAY * disp)
 {
-    al_draw_rotated_bitmap(sprite, 16,16, position.first,position.second, direction, 0);
+    Camera::get().draw_sprite(sprite, {16,16}, position, direction, 0);
+    //bounding.draw_box(disp);
 }
 
 void Def_ennemy::unload_content()

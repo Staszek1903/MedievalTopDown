@@ -21,33 +21,21 @@ float Bounding_box::cross_product(std::pair <int,int> a, std::pair <int, int> v1
     return ((l1.first*l2.second)-(l1.second*l2.first));
 }
 
-bool Bounding_box::is_inside(std::vector <std::pair <int, int> > &a, std::vector <std::pair <int, int> > &b)
+bool Bounding_box::is_inside(std::pair <int, int> v2, std::vector <std::pair <int, int> > &p)
 {
-    std::pair <int, int> va,v1,v2;
+    std::pair <int,int> a,v1;
 
-    for(unsigned int i=0; i<b.size(); i++)        //sprawdzamy czy punkt w b znajduje sie w nas;
+    for(int i =0; i<p.size(); i++)
     {
-        bool inside = true;
-        for(unsigned int j=0; j<a.size(); j++)
-        {
-            va = a[j];
-            v2 = b[i];
-            if(i == a.size())
-                v1 = a[0];
-            else
-                v1 = a[j+1];
-
-            if(cross_product(va,v1,v2) < 0)
-                {inside = false; break;}
-        }
-        if(inside)
-            return true;
+        a = p[i];
+        v1 = p[(i+1)%p.size()];
+        if(cross_product(a,v1,v2) < 0 )
+            return false;
     }
-
-    return false;
+    return true;
 }
 
-void Bounding_box::make_real_points(std::vector <std::pair <int, int> > &v)
+void Bounding_box::get_real_points(std::vector <std::pair <int, int> > &v)
 {
     v.clear();
     for(unsigned int i=0; i<bounding_points.size(); i++)
@@ -63,12 +51,18 @@ bool Bounding_box::box_coli(Bounding_box &b)
 
 bool Bounding_box::vect_coli(Bounding_box &b)
 {
-    std::vector <std::pair <int, int> > mpoints, bpoints;
-    make_real_points(mpoints);
-    b.get_real_points(bpoints);
+    std::vector <std::pair <int,int> > pb, pm;
+    b.get_real_points(pb);
+    get_real_points(pm);
 
-    if(is_inside(mpoints, bpoints) || is_inside(bpoints, mpoints))
-        return true;
+    for(int i=0; i<pm.size(); i++)
+        if(is_inside(pm[i],pb))
+            return true;
+
+    for(int i=0; i<pb.size(); i++)
+        if(is_inside(pb[i],pm))
+            return true;
+
     return false;
 }
 
@@ -95,6 +89,10 @@ void Bounding_box::load_content(std::pair <int, int> pos, int size, Type type)
         bounding_points.push_back({(size/2),(size/2)});
         bounding_points.push_back({-(size/2),(size/2)});
     }
+    else if(type == POINT)
+    {
+        bounding_points.push_back({5,5});
+    }
 }
 
 void Bounding_box::update(std::pair <int, int> pos)
@@ -108,23 +106,38 @@ void Bounding_box::update(std::pair <int, int> pos)
 
 bool Bounding_box::is_coliding(Bounding_box &b)
 {
+    if(type == BOX && b.type == BOX)
+        return box_coli(b);
+
     if(!box_coli(b))
         return false;
 
-    if(type == CUSTOM || b.type == CUSTOM)
-        return vect_coli(b);
-
-    return true;
+    return vect_coli(b);
 }
 
-void Bounding_box::get_real_points(std::vector <std::pair <int,int> > &v)
+void Bounding_box::draw_box(ALLEGRO_DISPLAY * disp)
 {
-    make_real_points(v);
+    if(bounding_points.size() == 1)
+        Camera::get().draw_circle({bounding_points[0].first+pos.first, bounding_points[0].second+pos.second},
+                              5, al_map_rgb(255,255,255));
+    else
+    {
+        for(int i=0; i<bounding_points.size(); i++)
+        {
+            Camera::get().draw_line({bounding_points[i].first+pos.first, bounding_points[i].second+pos.second},
+                         {bounding_points[(i+1)%bounding_points.size()].first+pos.first,
+                         bounding_points[(i+1)%bounding_points.size()].second+pos.second},
+                         al_map_rgb(255,255,255), 1);
+        }
+    }
 }
 
-void Bounding_box::print_points()
+void Bounding_box::clear_points()
 {
-    for(int i=0; i<bounding_points.size(); i++)
-        std::cout<<bounding_points[i].first<<" "<<bounding_points[i].second<<std::endl;
-    getch();
+    bounding_points.clear();
+}
+
+void Bounding_box::new_point(std::pair <int,int> point)
+{
+    bounding_points.push_back(point);
 }

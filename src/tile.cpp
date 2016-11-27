@@ -28,7 +28,7 @@ void Tile::update(ALLEGRO_EVENT ev)
 
 void Tile::draw(ALLEGRO_DISPLAY *disp)
 {
-    al_draw_bitmap(sprite, position.first, position.second, 0);
+    Camera::get().draw_sprite(sprite,{16,16},position,0, 0);
 }
 
 void Tile::unload_content()

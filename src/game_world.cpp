@@ -16,9 +16,13 @@ void Game_world::load_content()
 
     units.push_back(new Player);
     units.push_back(new Def_ennemy);
+    units.push_back(new Def_ennemy);
+    units.push_back(new Def_ennemy);
 
-    for(unsigned int i=0; i<units.size(); i++)
-        units[i]->load_content();
+    units[0]->load_content({100,100});
+    units[1]->load_content({300,100});
+    units[2]->load_content({100,300});
+    units[3]->load_content({400,400});
 }
 
 void Game_world::update(ALLEGRO_EVENT ev)

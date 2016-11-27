@@ -25,7 +25,7 @@ public:
     Unit();
     virtual ~Unit();
 
-    virtual void load_content();
+    virtual void load_content(std::pair <int,int> pos);
     virtual void update(ALLEGRO_EVENT ev);
     virtual void draw(ALLEGRO_DISPLAY * disp);
     virtual void unload_content();

@@ -10,7 +10,7 @@ Unit::~Unit()
     //dtor
 }
 
-void Unit::load_content()
+void Unit::load_content(std::pair <int,int> pos)
 {
 
 }

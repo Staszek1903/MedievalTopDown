@@ -4,6 +4,7 @@
 #include <allegro5/allegro.h>
 #include "event_trans.h"
 #include "event_rec.h"
+#include "camera.h"
 #include <conio.h>
 
 class Tile

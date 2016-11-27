@@ -1,4 +1,5 @@
 #include "player.h"
+#include "camera.h"
 
 Player::Player()
 {
@@ -10,10 +11,10 @@ Player::~Player()
     //dtor
 }
 
-void Player::load_content()
+void Player::load_content(std::pair <int,int> pos)
 {
-    position.first = 100;
-    position.second = 100;
+    Camera::get().set_camera_ref(&position);
+    position = pos;
     move_speed = 5;
     direction = 0;
     //move_dir = 0;
@@ -22,9 +23,10 @@ void Player::load_content()
 
     sprite = al_load_bitmap("def_unit.png");
 
-    bounding.load_content(position, 32, Bounding_box::BOX);
+    bounding.load_content(position, 32, Bounding_box::CUSTOM);
 
     cout<<"spierdalaj"<<endl;
+    cout<<Bounding_box::POINT<<endl;
 
     if(!sprite){
         cout<<"ni mo bitmapy"<<endl;
@@ -83,8 +85,8 @@ void Player::update(ALLEGRO_EVENT ev)
     else if(ev.type == ALLEGRO_EVENT_TIMER)
     {
         prev_position = position;
-        float y = mouse_pos.second - position.second,
-              x = mouse_pos.first -position.first;
+        float y = mouse_pos.second - 300,
+              x = mouse_pos.first -400;
         this->direction = atan2(y, x) + M_PI_2;
 
         if(up_dir)
@@ -153,7 +155,8 @@ void Player::update(ALLEGRO_EVENT ev)
 
 void Player::draw(ALLEGRO_DISPLAY * disp)
 {
-    al_draw_rotated_bitmap(sprite, 16,16, position.first, position.second, direction, NULL);
+    Camera::get().draw_sprite(sprite,{16,16},position,direction,0);
+    //bounding.draw_box(disp);
 }
 
 void Player::unload_content()

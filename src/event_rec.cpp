@@ -24,7 +24,7 @@ void Event_rec::rec_event_list(std::vector <Event> ev_list)
         {
         case Event::SOLID:
             *position = *prev_position;
-            std::cout<<"SOLID KURWA"<<std::endl;
+           // std::cout<<"SOLID KURWA"<<std::endl;
         break;
         }
     }

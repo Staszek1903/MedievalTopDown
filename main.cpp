@@ -53,9 +53,8 @@ int main()
 
     al_clear_to_color( al_map_rgb( 156, 156, 156 ) );
 
-    al_start_timer(timer);
-
     screen.load_content();
+    al_start_timer(timer);
     while( true )
     {
         ALLEGRO_EVENT ev;
