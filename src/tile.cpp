@@ -33,7 +33,8 @@ void Tile::draw(ALLEGRO_DISPLAY *disp)
 
 void Tile::unload_content()
 {
-
+    //std::cout<<"tile destroyed"<<std::endl;
+    al_destroy_bitmap(sprite);
 }
 
 std::vector <Event> Tile::get_event_list()

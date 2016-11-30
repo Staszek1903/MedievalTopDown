@@ -7,6 +7,7 @@
 #include "bounding_box.h"
 #include "event_trans.h"
 #include "event_rec.h"
+#include "animation.h"
 
 class Unit
 {
@@ -20,6 +21,8 @@ protected:
     Bounding_box bounding;
     Event_trans transmiter;
     Event_rec reciever;
+    Animation anim;
+
 
 public:
     Unit();

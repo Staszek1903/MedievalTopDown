@@ -36,5 +36,5 @@ void Def_ennemy::draw(ALLEGRO_DISPLAY * disp)
 
 void Def_ennemy::unload_content()
 {
-
+    al_destroy_bitmap(sprite);
 }

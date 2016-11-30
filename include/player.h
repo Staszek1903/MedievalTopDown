@@ -2,11 +2,13 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 #include "unit.h"
 #include "event_rec.h"
 #include <conio.h>
 #include <iostream>
-#include <cmath>
 using std::cout;
 using std::endl;
 
@@ -19,7 +21,6 @@ class Player : public Unit
     const double brake = 0.04;
     const double acc = 0.04; //acceleration
     Event_rec reciever;
-
     //float move_dir;
 
 public:

@@ -22,6 +22,13 @@ void Player::load_content(std::pair <int,int> pos)
 
 
     sprite = al_load_bitmap("def_unit.png");
+    anim.load_content("def_unit_anim.png", {32,32}, 20);
+    std::vector <int> seq1 = {0,1,2,3,4,5,6,7},
+                      seq2 = {8,9,10,11,10,9,12,13,14,15,14,13};
+    anim.add_sequence(seq1);
+    anim.add_sequence(seq2);
+    anim.set_cut_sequence(1);
+
 
     bounding.load_content(position, 32, Bounding_box::CUSTOM);
 
@@ -36,6 +43,7 @@ void Player::load_content(std::pair <int,int> pos)
 
 void Player::update(ALLEGRO_EVENT ev)
 {
+    anim.update(ev);
     if(ev.type == ALLEGRO_EVENT_MOUSE_AXES)
     {
         mouse_pos.first = ev.mouse.x;
@@ -87,7 +95,7 @@ void Player::update(ALLEGRO_EVENT ev)
         prev_position = position;
         float y = mouse_pos.second - 300,
               x = mouse_pos.first -400;
-        this->direction = atan2(y, x) + M_PI_2;
+        this->direction = atan2(y, x) + 1.57079632679489661923; // M_PI_2 ale nie dziala
 
         if(up_dir)
         {
@@ -145,21 +153,28 @@ void Player::update(ALLEGRO_EVENT ev)
 
 
 
+        if(right_dir || left_dir ||down_dir || up_dir)
+            anim.set_cut_sequence(2);
+        else
+            anim.set_cut_sequence(1);
 
         position.first += move_speed*dir_speed.first;
         position.second += move_speed*dir_speed.second;
 
         bounding.update(position);
+
+
     }
 }
 
 void Player::draw(ALLEGRO_DISPLAY * disp)
 {
-    Camera::get().draw_sprite(sprite,{16,16},position,direction,0);
+    //Camera::get().draw_sprite(sprite,{16,16},position,direction,0);
     //bounding.draw_box(disp);
+    anim.draw(disp,position,direction,0);
 }
 
 void Player::unload_content()
 {
-
+    al_destroy_bitmap(sprite);
 }

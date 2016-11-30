@@ -40,6 +40,7 @@ void Map::draw(ALLEGRO_DISPLAY *disp)
 
 void Map::unload_content()
 {
+    //std::cout<<"mapa unload"<<std::endl;
     for(int i=0; i<map.size(); i++)
         for(int j=0; j<map[i].size(); j++)
             map[i][j].unload_content();

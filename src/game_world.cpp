@@ -53,7 +53,10 @@ void Game_world::draw(ALLEGRO_DISPLAY *disp)
 
 void Game_world::unload_content()
 {
-    //mapa.unload_content();
+    mapa.unload_content();
     for(unsigned int i=0; i<units.size(); i++)
+    {
+        units[i]->unload_content();
         delete units[i];
+    }
 }
